@@ -14,11 +14,15 @@
     font-weight: 200;
 }
 :root {
+    --container-modal-padding: 13px 25px;
+    --modal-width: 45%;
+    --modal-bg: rgba(50,50,50,.88);
     --main-size: 51.9%;
     --gray-text: #f5f5f7;
     --link-blue: #0066CC;
-    --border-blue: #0071e3;
+    --border-blue: 1px solid #0071e3;
     --border-gray: 1px solid #d2d2d7;
+    --container-modal-width: 80%;
     --text-black: #1D1D1F;
     --padding-lr: 33px;
     --padding-tb: 20px;
@@ -26,13 +30,126 @@
     --width: 50%;
     --center: 0 auto;
     --head-bg: rgba(0,0,0,0.8);
-    --text-small: 14px;
-    --letter-space: .08em;
+    --text-small: .77em;
+    --letter-space: .05em;
     --smothness: .4s ease;
-    --large-text: 1.4em;
+    --large-text: 1.3454em;
     --regular-size: 1.1em;
+    --heading-size: 2.3em;
     --border-radius: 12px;
     --border-hover: 1px solid #1D1D1F;
+}
+.modal__bg {
+    padding: 30px;
+    position: fixed;
+    z-index: 10;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--modal-bg);
+    display: flex;
+    justify-content: center;
+}
+.window {
+    border-radius: 16px;
+    position: absolute;
+    background-color: white;
+    padding: var(--container-modal-padding);
+    width: var(--modal-width);
+}
+.container__modal {
+    width: var(--container-modal-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+}
+.crosser {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    background-color: #E8E8ED;
+    font-size: 30px;
+    border-radius: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+.container__modal .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.container__modal .heading input {
+    opacity: 0;
+}
+.container__modal .heading label {
+    cursor: pointer;
+    font-size: var(--regular-size);
+    border-bottom: var(--border-gray);
+    transition: var(--smothness);
+}
+.container__modal .heading label:not(.container__modal .heading label:first-child) {
+    margin-left: 30px;
+}
+.accardeon {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: start;
+    border-bottom: var(--border-gray);
+    
+}
+.accardeon h3 {
+    font-size: var(--large-text);
+    font-weight: 600;
+}
+.accardeon span {
+    font-size: var(--regular-size);
+}
+.accardeon .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.arrow {
+    transition: var(--smothness);
+}
+.accardeon p {
+    opacity: 0;
+    display: none;
+    font-size: var(--regular-size);
+}
+.container__modal .heading .checked {
+    padding-bottom: 12px;
+    border-bottom: var(--border-hover);
+}
+
+.container__modal .heading h2 {
+    font-size: var(--heading-size);
+}
+.container__modal .heading span {
+    letter-spacing: var(--letter-space);
+    font-size: var(--regular-size);
+}
+.screen__accardeon {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px;  */
+}
+.accardeon__heading h4 {
+    font-size: var(--regular-size);
+    width: 39%;
+}
+.accardeon__heading {
+    display: flex;
+    text-align: start;
+    padding: 20px 0;
+    border-bottom: var(--border-gray);
+
 }
 button, a {
     cursor: pointer;
@@ -83,7 +200,7 @@ nav {
 }
 .iphone__screen img {
     position: sticky;
-    top: 0;
+    top: 70px;
 }
 .nav__text {
     display: flex;
@@ -138,7 +255,7 @@ a:hover {
 }
 .iphone__container {
     display: flex;
-    justify-content: space-between;
+    gap: 60px;
 }
 .iphone__status {
     margin-top: 100px;
@@ -288,4 +405,7 @@ a:hover {
 }
 .card {
     text-align: center;
+}
+.event {
+    border: var(--border-blue);
 }

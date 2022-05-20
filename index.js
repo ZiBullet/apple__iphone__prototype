@@ -1,60 +1,114 @@
-const iphoneFamilyButtons = document.querySelectorAll('label[data-family]')
-const iphoneScreen = document.querySelector('.iphone__model')
-const iphoneColors = document.querySelectorAll('div[data-color]')
-const unSelectedBorder = '1px solid #d2d2d7'
-const selectedBorder = '1px solid #0071e3'
-const heading = document.querySelector('.h4')
-const headingPrice = document.querySelector('.h4_price')
-const headingMo = document.querySelector('.h4_mo')
-const storages = document.querySelectorAll('h4[data-storage]') 
+const iPhoneScreen = document.querySelector('.iphone__model')
+const iPhoneModel = document.querySelectorAll('[data-family]')
+const iPhoneColor = document.querySelectorAll('[data-color]')
 
-// IT'S 24 O'CLOCK. UNFORTUNATELLY, I DO NOT FINISHED IT AND I HAVE TO GO TO BED. 
+//  IT'S TOO LATE, I GOTTA SLEEP. I HAVE NOT FINISHED YET, BECAUSE HERE SOMETHING WHAT I DO NOT UNDERSTAND. SO, SEE YA
 
-
-// Getting data-family's value
-iphoneFamilyButtons.forEach(btn => {
-    btn.onclick = () => {
-        changeIphoneFamily(btn.getAttribute('data-family'))
-    }
-});
-
-// iPhone screen changeing func
-const changeIphoneFamily = (family) => {
-    switch (family) {
+const changeIphone = (model) => {
+    switch (model) {
         case 'pro':
-            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-family-select.jpeg')
+            iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-family-select.jpeg')
+            changeColor(proColor)
+            btnsEvent(iPhoneModel)
             break;
-            case 'proMax':
-                iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-family-select.jpeg')
-                break;
+        case 'proMax':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-family-select.jpeg')
+            changeColor(proMaxColor)
+            break;
     
-                default:
-                    break;
-                }
-                iphoneColors.forEach(color => {
-                    color.onclick = () => {
-                        const iphone = color.getAttribute('data-color')
-                        if (family === 'pro' && iphone === 'silver') {
-                            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-silver-select.png')
-                        } else if (family === 'pro' && iphone === 'graphite') {
-                            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-graphite-select.png')
-                        } else if (family === 'pro' && iphone === 'gold') {
-                            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-gold-select.png')
-                        } else if (family === 'pro' && iphone === 'green') {
-                            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-green-select.png')
-                        } else if (family === 'pro' && iphone === 'blue') {
-                            iphoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-blue-select.png')
-                        } else if (family === 'proMax' && iphone === 'silver') {
-                            iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-silver-select.png')
-                        } else if (family === 'proMax' && iphone === 'graphite') {
-                            iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-graphite-select.png')
-                        } else if (family === 'proMax' && iphone === 'gold') {
-                            iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-gold-select.png')
-                        } else if (family === 'proMax' && iphone === 'green') {
-                            iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-green-select.png')
-                        } else if (family === 'proMax' && iphone === 'blue') {
-                            iphoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-blue-select.png')
-                        } 
-                    }
+        default:
+            break;
+    }
+} 
+function changeColor (funs) {
+    iPhoneColor.forEach(color => {
+        color.onclick = () => {
+            funs(color.getAttribute('data-color'))
+        }
     })
 }
+function proColor (color) {
+    switch (color) {
+            case 'silver':
+                iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-silver-select.png')
+                break;
+            case 'graphite':
+                iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-graphite-select.png')
+                break;
+            case 'gold':
+                iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-gold-select.png')
+                break;
+            case 'blue':
+                iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-blue-select.png')
+                break;
+            case 'green':
+                iPhoneScreen.setAttribute('src', './assets/png/proFamily/iphone-13-pro-green-select.png')
+                break;
+        
+            default:
+                break;
+        }
+        
+}
+function proMaxColor (color) {
+    switch (color) {
+        case 'silver':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-silver-select.png')
+            break;
+        case 'graphite':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-graphite-select.png')
+            break;
+        case 'gold':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-gold-select.png')
+            break;
+        case 'blue':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-blue-select.png')
+            break;
+        case 'green':
+            iPhoneScreen.setAttribute('src', './assets/png/proMaxFamily/iphone-13-pro-max-green-select.png')
+            break;
+
+        default:
+            break;
+    }
+}
+iPhoneModel.forEach(model => {
+    model.onclick = () => {
+        changeIphone(model.getAttribute('data-family'))
+    }
+})
+
+const checkBoxes = document.querySelectorAll('.toCheck')
+
+checkBoxes.forEach(box => {
+    box.onclick = () => {
+        if (box.classList.contains('checked')) {
+            box.classList.remove('checked')
+        } else {
+            box.classList.add('checked')
+        }
+    }
+})
+
+const arrows = document.querySelectorAll('.arrow')
+
+const rotated = 'rotateZ(180deg)'
+const unRotated = 'rotateZ(0deg)'
+const shows = document.querySelectorAll('.showUp')
+
+
+arrows.forEach(arrow => {
+    shows.forEach(show => {
+        arrow.onclick = () => {
+            if (arrow.style.transform === unRotated) {
+                show.style.display = 'none'
+                show.style.opacity = '0'
+                arrow.style.transform = rotated
+            } else {
+                arrow.style.transform = unRotated
+                show.style.display = 'block'
+                show.style.opacity = '1'
+            }
+        }
+    })
+})
